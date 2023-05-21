@@ -4,10 +4,6 @@ import datetime
 import os
 
 def listen(stop_event, recordings_path):
-    # Make dir if it doesn't exist
-    if not os.path.exists(recordings_path):
-        os.makedirs(recordings_path, exist_ok=True)
-
     # Get the sample frequency of the sound device
     freq = sd.query_devices(None, 'input')['default_samplerate']
 
