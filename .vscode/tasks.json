@@ -3,13 +3,19 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "python: run main",
+			"label": "python: run experiment",
 			"command": "python",
-			"args": ["main.py"],
+			"args": ["experiment.py"],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "shell",
+			"label": "python: run main",
+			"command": "python",
+			"args": ["main.py"]
 		}
 	]
 }
