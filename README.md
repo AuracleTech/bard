@@ -36,5 +36,5 @@ The voice command interpreter will now simultaneously run four threads:
 
 1. Record vocal commands and save them to the recordings folder.
 2. Transcribe the recordings and save the transcriptions to the transcriptions folder.
-3. Interpret the commands and save the interpreted commands to the commands folder.
-4. Execute the commands and vocalize the results.
+3. **WORK IN PROGRESS** Interpret the commands and save the interpreted commands to the commands folder.
+4. **WORK IN PROGRESS** Execute the commands and vocalize the results.
