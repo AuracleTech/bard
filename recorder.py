@@ -23,6 +23,6 @@ def listen(stop_event, recordings_path):
         sd.wait()
 
         # Convert the NumPy array to audio file
-        wv.write(os.path.join(recordings_path, filename + '.wav'), recording, freq, sampwidth=2)
+        wv.write(os.path.join(recordings_path, f"{filename}.wav"), recording, freq, sampwidth=2)
 
     print('Stopped listening')
