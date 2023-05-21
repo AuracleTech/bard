@@ -1,6 +1,5 @@
-git+https://github.com/openai/whisper.git
-openai
-keyboard
-pyaudio
-librosa
-numpy
+keyboard==0.13.5
+librosa==0.10.0.post2
+numpy==1.24.3
+openai_whisper==20230314
+PyAudio==0.2.13
