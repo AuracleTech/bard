@@ -38,3 +38,7 @@ print("Stopping...")
 stop_event.set()
 thread1.join()
 thread2.join()
+
+# Remove all recordings
+for f in os.listdir(recordings_path):
+    os.remove(os.path.join(recordings_path, f))
