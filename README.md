@@ -38,13 +38,3 @@ The voice command interpreter will now simultaneously run four threads:
 2. Transcribe the recordings and save the transcriptions to the transcriptions folder.
 3. Interpret the commands and save the interpreted commands to the commands folder.
 4. Execute the commands and vocalize the results.
-
-## Configuration
-
-You can modify the behavior of the voice command interpreter by editing the configuration file located at config.py. The available configuration options include:
-
-- **Recording Settings:** Configure the audio recording settings such as sample rate, duration, and audio format.
-
-- **Transcription Settings:** Configure the transcription process, including the language model and transcription format.
-  Command Processing Settings: Configure the AI model used for command interpretation and any additional processing steps.
-  Make sure to save the changes and restart the program for the new configuration to take effect.
