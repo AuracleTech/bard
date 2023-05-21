@@ -12,46 +12,50 @@ def listen(stop_event, recordings_path):
     CHANNELS = 1
     # OpenAI whisper uses 16kHz sample rate by default
     RATE = 16000
-    # Set the sample duration
-    FRAME_LENGTH = RATE // 10
-    # Proportion of the frame length to be considered as silence
-    CHUNK_SILENT_THRESHOLD = 0.5
+    # Amount of frames per second
+    FRAME_PER_SEC = 40
+    # Proportion of the frame required to be considered silent
+    FRAME_SILENCE_THRESHOLD = 0.4
     # Silence RMS ceiling
     SILENCE_RMS_CEILING = 64
+    # Frame length in bytes
+    RATE_PER_FRAME = RATE // FRAME_PER_SEC
+    # Amount of rate before silence
+    RATE_BEFORE_SILENCE = FRAME_SILENCE_THRESHOLD * FRAME_PER_SEC
 
     # Initialize PyAudio
     audio = pyaudio.PyAudio()
 
     # Open microphone stream
-    stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=FRAME_LENGTH)
+    stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=RATE_PER_FRAME)
 
     print('Listening...')
     while not stop_event.is_set():
         frames = []
-        silent_frames = 0
+        consecutive_silent_frames = 0
 
         while True:
             # Read audio data from the stream
-            data = stream.read(FRAME_LENGTH)
+            data = stream.read(RATE_PER_FRAME)
             frames.append(data)
 
             # Check for silence
             chunk = np.frombuffer(data, dtype=np.int16)
-            rms_features = librosa.feature.rms(y=chunk, frame_length=FRAME_LENGTH, hop_length=FRAME_LENGTH)
+            rms_features = librosa.feature.rms(y=chunk, frame_length=RATE_PER_FRAME, hop_length=RATE_PER_FRAME)
             rms = np.average(rms_features)
 
-            # If the audio is silent, increment the silent frame count
+            # Verify the current frame is silent
             if rms < SILENCE_RMS_CEILING:
-                silent_frames += 1
+                consecutive_silent_frames += 1
             else:
-                silent_frames = 0
+                consecutive_silent_frames = 0
             
             # If there are consecutive silent frames, stop recording
-            if silent_frames >= CHUNK_SILENT_THRESHOLD:
+            if consecutive_silent_frames > RATE_BEFORE_SILENCE:
                 break
         
         # If all frames are silent, skip saving the file
-        if len(frames) == silent_frames:
+        if len(frames) == consecutive_silent_frames:
             continue
 
         # Save the recorded audio to a WAV file
