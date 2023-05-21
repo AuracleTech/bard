@@ -10,9 +10,6 @@ def listen(stop_event, recordings_path):
     # Set the duration of the recording
     duration = 5 # seconds
 
-    # Calculate the number of samples per duration
-    rec_samples = int(freq * duration)
-
     print('Listening...')
     while not stop_event.is_set():
         ts = datetime.datetime.now()
@@ -20,7 +17,7 @@ def listen(stop_event, recordings_path):
 
         # Start recorder with the given values of duration and sample frequency
         # PTL Note: I had to change the channels value in the original code to fix a bug
-        recording = sd.rec(rec_samples, samplerate=freq, channels=2)
+        recording = sd.rec(int(freq * duration), samplerate=freq, channels=2)
 
         # Record audio for the given number of seconds
         sd.wait()
