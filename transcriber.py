@@ -1,12 +1,12 @@
 import whisper
-import os, glob
+import os
+import glob
 
 def transcribe(stop_event, recordings_path, transcript_file):
-    print('Transcribing...')
-
     model = whisper.load_model("base")
     recordings = os.path.join(recordings_path, '*.wav')
 
+    print('Transcribing...')
     while not stop_event.is_set():
         files = glob.glob(recordings);
 
