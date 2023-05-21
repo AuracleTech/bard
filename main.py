@@ -15,6 +15,8 @@ if not os.path.exists(data_dir):
     os.makedirs(data_dir, exist_ok=True)
 if not os.path.exists(recordings_path):
     os.makedirs(recordings_path, exist_ok=True)
+if os.path.exists(transcript_path):
+    os.remove(transcript_path)
 
 # Define thread functions
 def listen_thread():
