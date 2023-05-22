@@ -1,6 +1,6 @@
 # Python AI Voice Command Interpreter
 
-This repository contains a Python 3.11-based AI project that can interpret and execute vocal commands. The program records vocal inputs, transcribes them, and then processes the transcriptions using another AI to parse the spoken commands.
+This repository contains a Python 3.11-based AI project that can interpret and execute vocal commands. The program records vocal inputs, transcribes them, and then interprets them using another AI model and narrates the results.
 
 ## Installation
 
@@ -36,5 +36,5 @@ The voice command interpreter will now simultaneously run four threads:
 
 1. Record vocal commands and save them to the recordings folder.
 2. Transcribe the recordings and save the transcriptions to the transcriptions folder.
-3. **WORK IN PROGRESS** Interpret the commands and save the interpreted commands to the commands folder.
-4. **WORK IN PROGRESS** Execute the commands and vocalize the results.
+3. Interpret the commands and save the interpreted commands to the commands folder.
+4. Execute the commands and vocalize the results.
