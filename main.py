@@ -44,6 +44,8 @@ print("Press 's' to stop")
 keyboard.wait("s")
 print("Stopping...")
 stop_event.set()
+
+print("Waiting for threads to finish...")
 thread1.join()
 thread2.join()
 thread3.join()
