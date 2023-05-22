@@ -1,11 +1,14 @@
-import os
-import datetime
 import pyaudio
-import wave
 import librosa
 import numpy as np
+import datetime
+import os
+import wave
 
-def listen(stop_event, recordings_path):
+
+def listen(stop_event, recordings_path, recordings_queue):
+    print("Listening...")
+
     # Matching whisper settings
     FORMAT = pyaudio.paInt16
     # OpenAI whisper uses 1 channel by default
@@ -27,9 +30,14 @@ def listen(stop_event, recordings_path):
     audio = pyaudio.PyAudio()
 
     # Open microphone stream
-    stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=RATE_PER_FRAME)
+    stream = audio.open(
+        format=FORMAT,
+        channels=CHANNELS,
+        rate=RATE,
+        input=True,
+        frames_per_buffer=RATE_PER_FRAME,
+    )
 
-    print('Listening...')
     while not stop_event.is_set():
         frames = []
         consecutive_silent_frames = 0
@@ -41,7 +49,9 @@ def listen(stop_event, recordings_path):
 
             # Check for silence
             chunk = np.frombuffer(data, dtype=np.int16)
-            rms_features = librosa.feature.rms(y=chunk, frame_length=RATE_PER_FRAME, hop_length=RATE_PER_FRAME)
+            rms_features = librosa.feature.rms(
+                y=chunk, frame_length=RATE_PER_FRAME, hop_length=RATE_PER_FRAME
+            )
             rms = np.average(rms_features)
 
             # Verify the current frame is silent
@@ -49,29 +59,32 @@ def listen(stop_event, recordings_path):
                 consecutive_silent_frames += 1
             else:
                 consecutive_silent_frames = 0
-            
+
             # If there are consecutive silent frames, stop recording
             if consecutive_silent_frames > RATE_BEFORE_SILENCE:
                 break
-        
+
         # If all frames are silent, skip saving the file
         if len(frames) == consecutive_silent_frames:
             continue
 
         # Save the recorded audio to a WAV file
-        ts = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        filename = f"{ts}.wav"
-        file_path = os.path.join(recordings_path, filename)
+        timestamp = datetime.datetime.now().timestamp()
+        filename = f"{timestamp}.wav"
+        filepath = os.path.join(recordings_path, filename)
 
-        with wave.open(file_path, 'wb') as wf:
+        with wave.open(filepath, "wb") as wf:
             wf.setnchannels(CHANNELS)
             wf.setsampwidth(audio.get_sample_size(FORMAT))
             wf.setframerate(RATE)
             wf.writeframes(b"".join(frames))
+
+        # Add file path to queue
+        recordings_queue.put(filepath)
 
     # Close the stream
     stream.stop_stream()
     stream.close()
     audio.terminate()
 
-    print('Stopped listening')
+    print("Stopped listening")
