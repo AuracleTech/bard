@@ -17,8 +17,8 @@ def listen(stop_event, recordings_path, recordings_queue):
     RATE = 16000
     # Amount of frames per second
     FRAME_PER_SEC = 40
-    # Proportion of the frame required to be considered silent
-    FRAME_SILENCE_THRESHOLD = 1
+    # Proportion of the frame required to be considered silent (0.0 - 1.0)
+    FRAME_SILENCE_THRESHOLD = 0.5
     # Silence RMS ceiling
     SILENCE_RMS_CEILING = 64
     # Frame length in bytes
