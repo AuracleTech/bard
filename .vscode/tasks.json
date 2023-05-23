@@ -3,12 +3,6 @@
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "python: run experiment",
-			"command": "python",
-			"args": ["experiment.py"]
-		},
-		{
-			"type": "shell",
 			"label": "python: run main",
 			"command": "python",
 			"args": ["main.py"],
