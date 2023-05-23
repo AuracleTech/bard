@@ -5,6 +5,7 @@ import keyboard
 import recorder
 import narrator
 import config
+import os
 from queue import Queue
 
 # Create stop event
@@ -66,7 +67,9 @@ except KeyboardInterrupt:
     thread4.join()
 
     print("Deleting recordings...")
-    config.delete_recordings()
+    for filename in os.listdir(config.RECORDINGS_PATH):
+        os.remove(os.path.join(config.RECORDINGS_PATH, filename))
+    os.rmdir(config.RECORDINGS_PATH)
 
     print("Done")
     exit(0)

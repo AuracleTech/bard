@@ -16,12 +16,6 @@ def generate_random_hash():
     return hash_value
 
 
-def delete_recordings():
-    for filename in os.listdir(RECORDINGS_PATH):
-        os.remove(os.path.join(RECORDINGS_PATH, filename))
-        os.rmdir(RECORDINGS_PATH)
-
-
 # Generate exit code
 EXIT_CODE = generate_random_hash()
 
