@@ -1,4 +1,5 @@
 import pyttsx3
+import config
 
 
 def narrate(stop_event, narrate_queue):
@@ -6,7 +7,7 @@ def narrate(stop_event, narrate_queue):
 
     engine = pyttsx3.init()  # object creation
     engine.setProperty("rate", 170)
-    engine.setProperty("volume", 2.0)
+    engine.setProperty("volume", 1.0)
     VOICES = engine.getProperty("voices")
     engine.setProperty("voice", VOICES[0].id)
 
@@ -14,8 +15,8 @@ def narrate(stop_event, narrate_queue):
         # Get the transcript from the queue
         message = narrate_queue.get()
 
-        # If the message is -E-X-I-T-, stop narrating
-        if message == "-E-X-I-T-":
+        # If we receive exit code, stop
+        if message == config.EXIT_CODE:
             break
 
         print("Narrating: " + message)

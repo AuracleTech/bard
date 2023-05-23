@@ -1,17 +1,11 @@
-import threading
-import keyboard
-import os
-from queue import Queue
-import recorder
 import transcriber
 import interpreter
+import threading
+import keyboard
+import recorder
 import narrator
-
-
-# Create paths
-RECORDINGS_PATH = "recordings"
-if not os.path.exists(RECORDINGS_PATH):
-    os.makedirs(RECORDINGS_PATH)
+import config
+from queue import Queue
 
 # Create stop event
 stop_event = threading.Event()
@@ -23,7 +17,7 @@ narrate_queue = Queue()
 
 # Start the threads
 thread1 = threading.Thread(
-    target=recorder.listen, args=(stop_event, RECORDINGS_PATH, recordings_queue)
+    target=recorder.listen, args=(stop_event, config.RECORDINGS_PATH, recordings_queue)
 )
 thread2 = threading.Thread(
     target=transcriber.transcribe, args=(stop_event, recordings_queue, transcript_queue)
@@ -39,7 +33,17 @@ def clear_queue(queue):
         queue.get()
 
 
-def cleanup_exit():
+try:
+    print("Starting...")
+    thread1.start()
+    thread2.start()
+    thread3.start()
+    thread4.start()
+    print("Press s to stop")
+    keyboard.wait("s")
+    raise KeyboardInterrupt
+
+except KeyboardInterrupt:
     print("Stopping...")
 
     print("Setting stop event...")
@@ -51,9 +55,9 @@ def cleanup_exit():
     clear_queue(narrate_queue)
 
     print("Send stop event to all queues...")
-    recordings_queue.put("-E-X-I-T-")
-    transcript_queue.put("-E-X-I-T-")
-    narrate_queue.put("-E-X-I-T-")
+    recordings_queue.put(config.EXIT_CODE)
+    transcript_queue.put(config.EXIT_CODE)
+    narrate_queue.put(config.EXIT_CODE)
 
     print("Waiting for threads to finish...")
     thread1.join()
@@ -62,21 +66,6 @@ def cleanup_exit():
     thread4.join()
 
     print("Deleting recordings...")
-    for filename in os.listdir(RECORDINGS_PATH):
-        os.remove(os.path.join(RECORDINGS_PATH, filename))
-    os.rmdir(RECORDINGS_PATH)
+    config.delete_recordings()
 
     exit(0)
-
-
-try:
-    print("Starting...")
-    thread1.start()
-    thread2.start()
-    thread3.start()
-    thread4.start()
-    print("Press s to stop")
-    keyboard.wait("s")
-    cleanup_exit()
-except KeyboardInterrupt:
-    cleanup_exit()

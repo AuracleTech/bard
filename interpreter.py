@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import openai
 import os
+import config
 
 
 def interpret(stop_event, transcript_queue, narrate_queue):
@@ -18,8 +19,8 @@ def interpret(stop_event, transcript_queue, narrate_queue):
         # Get the transcript from the queue
         transcript = transcript_queue.get()
 
-        # If the transcript is -E-X-I-T-, stop narrating
-        if transcript == "-E-X-I-T-":
+        # If we receive exit code, stop
+        if transcript == config.EXIT_CODE:
             break
 
         prompt = f"One sentence answer: {transcript}"

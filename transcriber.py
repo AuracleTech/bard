@@ -1,6 +1,6 @@
 import whisper
 import os
-from playsound import play_sound
+import config
 
 
 def transcribe(stop_event, recordings_queue, transcript_queue):
@@ -13,8 +13,8 @@ def transcribe(stop_event, recordings_queue, transcript_queue):
         # Get the filepath from the queue
         filepath = recordings_queue.get()
 
-        # If the filepath is -E-X-I-T-, stop narrating
-        if filepath == "-E-X-I-T-":
+        # If we receive exit code, stop
+        if filepath == config.EXIT_CODE:
             break
 
         # Load audio and pad or trim to 1 second
@@ -39,7 +39,7 @@ def transcribe(stop_event, recordings_queue, transcript_queue):
             ):
                 # Add transcript to queue
                 transcript_queue.put(result.text)
-                play_sound("transcribed")
+                config.play_sound("transcribed")
 
         # Delete the file
         os.remove(filepath)
