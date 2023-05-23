@@ -23,7 +23,7 @@ def interpret(stop_event, transcript_queue, narrate_queue):
         if transcript == config.EXIT_CODE:
             break
 
-        prompt = f"One sentence answer: {transcript}"
+        prompt = f"Your name is bard. Answer in One sentence: {transcript}"
 
         completion = openai.Completion.create(
             model="text-davinci-003",
