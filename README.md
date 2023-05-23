@@ -8,19 +8,19 @@ To use this voice command interpreter, please follow these steps:
 
 1. Clone this repository to your local machine using the following command:
 
-```haskell
+```bash
 git clone https://github.com/AuracleTech/command-vocal-interpreter.git
 ```
 
 2. Navigate to the project directory:
 
-```haskell
+```bash
 cd voice-command-interpreter
 ```
 
 3. Install the required dependencies by running the following command:
 
-```haskell
+```bash
 pip install -r requirements.txt
 ```
 
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 1. Run the main.py file using Python 3.11:
 
-```haskell
+```bash
 python main.py
 ```
 
