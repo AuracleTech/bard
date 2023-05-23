@@ -68,4 +68,5 @@ except KeyboardInterrupt:
     print("Deleting recordings...")
     config.delete_recordings()
 
+    print("Done")
     exit(0)
