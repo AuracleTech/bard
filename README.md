@@ -9,7 +9,7 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 1. The **Recorder** which records vocal inputs and saves them to the recordings folder.
 2. A **Transcriber** which transcribes the recordings and passes them to the interpreter.
 3. An **Interpreter** which interprets the transcribed questions and passes the results to the narrator.
-4. The **Narrator** which narrates the results of the interpreter.
+4. The **Narrator** which narrates the answers or results to the user.
 
 ## Usage
 
@@ -45,7 +45,7 @@ pipreqs . --force
 pip install -r requirements.txt
 ```
 
-7. Run the main.py file using Python 3.11
+7. Run the main.py
 
 ```bash
 python main.py
