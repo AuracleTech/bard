@@ -30,6 +30,9 @@ ASSETS_PATH = "assets"
 AUDIO_EXT = ".wav"
 RECORDINGS_PATH = "recordings"
 
+# Whispering language
+WHISPERING_LANGUAGE = "en"
+
 # Create recordings directory
 if not os.path.exists(RECORDINGS_PATH):
     os.makedirs(RECORDINGS_PATH)
