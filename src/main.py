@@ -51,7 +51,7 @@ except KeyboardInterrupt:
     clear_queue(transcript_queue)
     clear_queue(narrate_queue)
 
-    print("Send stop event to all queues...")
+    print("Send exit code to all queues...")
     recordings_queue.put(config.EXIT_CODE)
     transcript_queue.put(config.EXIT_CODE)
     narrate_queue.put(config.EXIT_CODE)
