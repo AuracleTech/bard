@@ -31,37 +31,43 @@ git clone https://github.com/AuracleTech/command-vocal-interpreter.git
 cd voice-command-interpreter
 ```
 
-4. Install pipreqs to generates the dependencies
+4. Install OpenAi Whisper
+
+```bash
+pip install -U openai-whisper
+```
+
+5. Install pipreqs to generates the dependencies
 
 ```bash
 pip install pipreqs
 ```
 
-5. Use pipreqs to generate the dependencies
+6. Use pipreqs to generate the dependencies
 
 ```bash
 pipreqs . --force
 ```
 
-6. Install the required dependencies by running the following command
+7. Install the required dependencies by running the following command
 
 ```bash
 pip install -r requirements.txt
 ```
 
-7. Create a .env file in the root directory and add the following variables
+8. Create a .env file in the root directory and add the following variables
 
 ```bash
 OPENAI_API_KEY=your-openai-api-key-here
 ```
 
-8. Launch the app
+9. Launch the app
 
 ```bash
 python src/main.py
 ```
 
-9. Ask Bard your questions by including its name
+10. Ask Bard your questions by including its name
 
 - **Bard**, Do you know any library in python to play sound effects?
 
