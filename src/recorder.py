@@ -38,6 +38,7 @@ def listen(stop_event, recordings_path, recordings_queue):
         frames_per_buffer=RATE_PER_FRAME,
     )
 
+    print("Press ctrl + c to stop")
     while not stop_event.is_set():
         frames = []
         consecutive_silent_frames = 0

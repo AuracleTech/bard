@@ -1,7 +1,6 @@
 import transcriber
 import interpreter
 import threading
-import keyboard
 import recorder
 import narrator
 import config
@@ -17,9 +16,6 @@ transcript_queue = Queue()
 narrate_queue = Queue()
 
 # Start the threads
-thread1 = threading.Thread(
-    target=recorder.listen, args=(stop_event, config.RECORDINGS_PATH, recordings_queue)
-)
 thread2 = threading.Thread(
     target=transcriber.transcribe, args=(stop_event, recordings_queue, transcript_queue)
 )
@@ -36,13 +32,11 @@ def clear_queue(queue):
 
 try:
     print("Starting...")
-    thread1.start()
     thread2.start()
     thread3.start()
     thread4.start()
-    print("Press s to stop")
-    keyboard.wait("s")
-    raise KeyboardInterrupt
+
+    recorder.listen(stop_event, config.RECORDINGS_PATH, recordings_queue)
 
 except KeyboardInterrupt:
     print("Stopping...")
@@ -61,7 +55,6 @@ except KeyboardInterrupt:
     narrate_queue.put(config.EXIT_CODE)
 
     print("Waiting for threads to finish...")
-    thread1.join()
     thread2.join()
     thread3.join()
     thread4.join()
