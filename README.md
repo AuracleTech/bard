@@ -45,13 +45,19 @@ pipreqs . --force
 pip install -r requirements.txt
 ```
 
-7. Run the main.py
+7. Create a .env file in the root directory and add the following variables
+
+```bash
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+8. Run the main.py
 
 ```bash
 python main.py
 ```
 
-8. Ask Bard your questions by including its name
+9. Ask Bard your questions by including its name
 
 - **Bard**, Do you know any library in python to play sound effects?
 
