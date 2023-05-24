@@ -24,7 +24,7 @@ git clone https://github.com/AuracleTech/bard.git
 3. Navigate to the project directory
 
 ```bash
-cd voice-command-interpreter
+cd bard
 ```
 
 4. Install pipreqs to generates the dependencies
