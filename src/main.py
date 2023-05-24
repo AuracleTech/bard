@@ -16,13 +16,15 @@ transcript_queue = Queue()
 narrate_queue = Queue()
 
 # Start the threads
-thread2 = threading.Thread(
+thread_transcribe = threading.Thread(
     target=transcriber.transcribe, args=(stop_event, recordings_queue, transcript_queue)
 )
-thread3 = threading.Thread(
+thread_interpret = threading.Thread(
     target=interpreter.interpret, args=(stop_event, transcript_queue, narrate_queue)
 )
-thread4 = threading.Thread(target=narrator.narrate, args=(stop_event, narrate_queue))
+thread_narrate = threading.Thread(
+    target=narrator.narrate, args=(stop_event, narrate_queue)
+)
 
 
 def clear_queue(queue):
@@ -32,9 +34,9 @@ def clear_queue(queue):
 
 try:
     print("Starting...")
-    thread2.start()
-    thread3.start()
-    thread4.start()
+    thread_transcribe.start()
+    thread_interpret.start()
+    thread_narrate.start()
 
     recorder.listen(stop_event, config.RECORDINGS_PATH, recordings_queue)
 
@@ -55,9 +57,9 @@ except KeyboardInterrupt:
     narrate_queue.put(config.EXIT_CODE)
 
     print("Waiting for threads to finish...")
-    thread2.join()
-    thread3.join()
-    thread4.join()
+    thread_transcribe.join()
+    thread_interpret.join()
+    thread_narrate.join()
 
     print("Deleting recordings...")
     for filename in os.listdir(config.RECORDINGS_PATH):
