@@ -13,7 +13,11 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 
 ## Usage
 
-1. Install [git](https://git-scm.com/downloads) and [Python 3.11](https://www.python.org/downloads/release/python-3113/) on your local machine.
+1. Install requirements
+
+- [git](https://git-scm.com/downloads)
+- [Python 3.11](https://www.python.org/downloads/release/python-3113/)
+- [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
 
 2. Clone this repository to your local machine using the following command
 
