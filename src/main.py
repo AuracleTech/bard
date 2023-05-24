@@ -34,9 +34,9 @@ def clear_queue(queue):
 
 try:
     print("Starting...")
-    thread_transcribe.start()
-    thread_interpret.start()
     thread_narrate.start()
+    thread_interpret.start()
+    thread_transcribe.start()
 
     recorder.listen(stop_event, config.RECORDINGS_PATH, recordings_queue)
 
