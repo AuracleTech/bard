@@ -55,10 +55,10 @@ pip install -r requirements.txt
 OPENAI_API_KEY=your-openai-api-key-here
 ```
 
-8. Run the main.py
+8. Launch the app
 
 ```bash
-python main.py
+python src/main.py
 ```
 
 9. Ask Bard your questions by including its name
