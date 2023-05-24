@@ -18,7 +18,7 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 2. Clone this repository to your local machine using the following command
 
 ```bash
-git clone https://github.com/AuracleTech/command-vocal-interpreter.git
+git clone https://github.com/AuracleTech/bard.git
 ```
 
 3. Navigate to the project directory
