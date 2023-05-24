@@ -13,7 +13,7 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 
 ## Usage
 
-1. Install [git](https://git-scm.com/downloads), [Python 3.11](https://www.python.org/downloads/release/python-3113/), and [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)(required by simpleaudio) on your local machine.
+1. Install [git](https://git-scm.com/downloads), [Python 3.11](https://www.python.org/downloads/release/python-3113/), and [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022) (required by simpleaudio) on your local machine.
 
 2. Clone this repository to your local machine using the following command
 
