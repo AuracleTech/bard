@@ -22,49 +22,49 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 
 2. Clone this repository to your local machine using the following command
 
-```bash
+```ruby
 git clone https://github.com/AuracleTech/bard.git
 ```
 
 3. Navigate to the project directory
 
-```bash
+```ruby
 cd bard
 ```
 
 4. Install OpenAi Whisper
 
-```bash
+```ruby
 pip install -U openai-whisper
 ```
 
 5. Install pipreqs to generates the dependencies
 
-```bash
+```ruby
 pip install pipreqs
 ```
 
 6. Use pipreqs to generate the dependencies
 
-```bash
+```ruby
 pipreqs . --force
 ```
 
 7. Install the required dependencies by running the following command
 
-```bash
+```ruby
 pip install -r requirements.txt
 ```
 
 8. Create a .env file in the root directory and add the following variables
 
-```bash
+```ruby
 OPENAI_API_KEY=your-openai-api-key-here
 ```
 
 9. Launch the app
 
-```bash
+```ruby
 python src/main.py
 ```
 
@@ -79,81 +79,3 @@ python src/main.py
 ## Help
 
 Feel free to open an [issue](/issues) if you have any questions or suggestions.
-
-# TEST
-
-```c
-pip install -r requirements.txt
-```
-
-```haskell
-pip install -r requirements.txt
-```
-
-```java
-pip install -r requirements.txt
-```
-
-```javascript
-pip install -r requirements.txt
-```
-
-```python
-pip install -r requirements.txt
-```
-
-```ruby
-pip install -r requirements.txt
-```
-
-```rust
-pip install -r requirements.txt
-```
-
-```typescript
-pip install -r requirements.txt
-```
-
-```xml
-pip install -r requirements.txt
-```
-
-```yaml
-pip install -r requirements.txt
-```
-
-```bash
-pip install -r requirements.txt
-```
-
-```c++
-pip install -r requirements.txt
-```
-
-```css
-pip install -r requirements.txt
-```
-
-```dockerfile
-pip install -r requirements.txt
-```
-
-```go
-pip install -r requirements.txt
-```
-
-```html
-pip install -r requirements.txt
-```
-
-```json
-pip install -r requirements.txt
-```
-
-```kotlin
-pip install -r requirements.txt
-```
-
-```less
-pip install -r requirements.txt
-```
