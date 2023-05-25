@@ -41,7 +41,7 @@ def transcribe(stop_event, recordings_queue, transcript_queue):
             ):
                 # Add transcript to queue
                 transcript_queue.put(result.text)
-                config.play_sound("transcribed")
+                config.play_transcribed_sound()
 
         # Delete the file
         os.remove(filepath)

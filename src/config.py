@@ -1,13 +1,20 @@
 import hashlib
 import random
 import os
-import simpleaudio as sa
+import pyaudio
+import wave
 
 
-def play_sound(filename):
-    path = os.path.join(ASSETS_PATH, filename + AUDIO_EXT)
-    wave_obj = sa.WaveObject.from_wave_file(path)
-    wave_obj.play()
+def load_wav_file(file_path):
+    with wave.open(file_path, "rb") as wav_file:
+        # Get the audio file's properties
+        num_channels = wav_file.getnchannels()
+        sample_width = wav_file.getsampwidth()
+        sample_rate = wav_file.getframerate()
+        num_frames = wav_file.getnframes()
+        audio_data = wav_file.readframes(num_frames)
+
+    return audio_data, sample_rate, sample_width, num_channels
 
 
 def generate_random_hash():
@@ -21,12 +28,41 @@ EXIT_CODE = generate_random_hash()
 
 # Paths
 ASSETS_PATH = "assets"
-AUDIO_EXT = ".wav"
 RECORDINGS_PATH = "recordings"
 
 # Whispering language
 WHISPERING_LANGUAGE = "en"
 
-# Create recordings directory
-if not os.path.exists(RECORDINGS_PATH):
-    os.makedirs(RECORDINGS_PATH)
+# Sound effects settings
+SFX_FILE = "transcribed.wav"
+SFX_FULL_PATH = os.path.join(ASSETS_PATH, SFX_FILE)
+SFX_DATA, SFX_RATE, SFX_WIDTH, SFX_NB_CHANNEL = load_wav_file(SFX_FULL_PATH)
+
+
+# Transcribed SFX
+def play_transcribed_sound():
+    p = pyaudio.PyAudio()
+
+    # Open a stream
+    stream = p.open(
+        format=p.get_format_from_width(SFX_WIDTH),
+        channels=SFX_NB_CHANNEL,
+        rate=SFX_RATE,
+        output=True,
+    )
+
+    # Play the audio by writing the data to the stream in chunks
+    chunk_size = 1024
+    start_index = 0
+    while start_index < len(SFX_DATA):
+        end_index = start_index + chunk_size
+        chunk = SFX_DATA[start_index:end_index]
+        stream.write(chunk)
+        start_index = end_index
+
+    # Stop and close the stream
+    stream.stop_stream()
+    stream.close()
+
+    # Terminate the PyAudio instance
+    p.terminate()

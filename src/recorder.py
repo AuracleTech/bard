@@ -14,7 +14,7 @@ def listen(stop_event, recordings_path, recordings_queue):
     # OpenAI whisper uses 1 channel by default
     CHANNELS = 1
     # OpenAI whisper uses 16kHz sample rate by default
-    RATE = 16000
+    RATE = 16000  # HARD CODED IN WHISPER
     # Amount of frames per second
     FRAME_PER_SEC = 40
     # Proportion of the frame required to be considered silent (0.0 - 1.0)

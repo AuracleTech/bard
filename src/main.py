@@ -34,6 +34,9 @@ def clear_queue(queue):
 
 try:
     print("Starting...")
+    if not os.path.exists(config.RECORDINGS_PATH):
+        os.makedirs(config.RECORDINGS_PATH)
+
     thread_narrate.start()
     thread_interpret.start()
     thread_transcribe.start()
