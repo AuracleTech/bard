@@ -2,7 +2,7 @@ import pyttsx3
 import config
 
 
-def narrate(stop_event, narrate_queue):
+def narrate(narrate_queue):
     print("Narrating...")
 
     engine = pyttsx3.init()  # object creation
@@ -11,7 +11,7 @@ def narrate(stop_event, narrate_queue):
     VOICES = engine.getProperty("voices")
     engine.setProperty("voice", VOICES[0].id)
 
-    while not (stop_event.is_set() and narrate_queue.empty()):
+    while True:
         # Get the transcript from the queue
         message = narrate_queue.get()
 

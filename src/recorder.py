@@ -6,7 +6,7 @@ import os
 import wave
 
 
-def listen(stop_event, recordings_path, recordings_queue):
+def listen(recordings_path, recordings_queue):
     print("Listening...")
 
     # Matching whisper settings
@@ -39,7 +39,7 @@ def listen(stop_event, recordings_path, recordings_queue):
     )
 
     print("Press ctrl + c to stop")
-    while not stop_event.is_set():
+    while True:
         frames = []
         consecutive_silent_frames = 0
 

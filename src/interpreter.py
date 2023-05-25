@@ -4,7 +4,7 @@ import os
 import config
 
 
-def interpret(stop_event, transcript_queue, narrate_queue):
+def interpret(transcript_queue, narrate_queue):
     print("Interpreting...")
 
     # Load environment variables from .env
@@ -15,7 +15,7 @@ def interpret(stop_event, transcript_queue, narrate_queue):
     MAX_TOKENS = 128
     TEMPERATURE = 0.8
 
-    while not (stop_event.is_set() and transcript_queue.empty()):
+    while True:
         # Get the transcript from the queue
         transcript = transcript_queue.get()
 

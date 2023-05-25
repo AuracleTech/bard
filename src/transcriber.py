@@ -3,13 +3,13 @@ import os
 import config
 
 
-def transcribe(stop_event, recordings_queue, transcript_queue):
+def transcribe(recordings_queue, transcript_queue):
     print("Transcribing...")
 
     MODEL = whisper.load_model("base")
     MIN_AMOUNT_OF_SPEECH_CERTAINTY = 0.8
 
-    while not (stop_event.is_set() and recordings_queue.empty()):
+    while True:
         # Get the filepath from the queue
         filepath = recordings_queue.get()
 

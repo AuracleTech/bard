@@ -7,9 +7,6 @@ import config
 import os
 from queue import Queue
 
-# Create stop event
-stop_event = threading.Event()
-
 # Create queues
 recordings_queue = Queue()
 transcript_queue = Queue()
@@ -17,14 +14,12 @@ narrate_queue = Queue()
 
 # Start the threads
 thread_transcribe = threading.Thread(
-    target=transcriber.transcribe, args=(stop_event, recordings_queue, transcript_queue)
+    target=transcriber.transcribe, args=(recordings_queue, transcript_queue)
 )
 thread_interpret = threading.Thread(
-    target=interpreter.interpret, args=(stop_event, transcript_queue, narrate_queue)
+    target=interpreter.interpret, args=(transcript_queue, narrate_queue)
 )
-thread_narrate = threading.Thread(
-    target=narrator.narrate, args=(stop_event, narrate_queue)
-)
+thread_narrate = threading.Thread(target=narrator.narrate, args=(narrate_queue,))
 
 
 def clear_queue(queue):
@@ -41,13 +36,10 @@ try:
     thread_interpret.start()
     thread_transcribe.start()
 
-    recorder.listen(stop_event, config.RECORDINGS_PATH, recordings_queue)
+    recorder.listen(config.RECORDINGS_PATH, recordings_queue)
 
 except KeyboardInterrupt:
     print("Stopping...")
-
-    print("Setting stop event...")
-    stop_event.set()
 
     print("Clearing queues...")
     clear_queue(recordings_queue)
