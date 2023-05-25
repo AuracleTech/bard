@@ -22,49 +22,49 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 
 2. Clone this repository to your local machine using the following command
 
-```ruby
+```shell
 git clone https://github.com/AuracleTech/bard.git
 ```
 
 3. Navigate to the project directory
 
-```ruby
+```shell
 cd bard
 ```
 
 4. Install OpenAi Whisper
 
-```ruby
+```shell
 pip install -U openai-whisper
 ```
 
 5. Install pipreqs to generates the dependencies
 
-```ruby
+```shell
 pip install pipreqs
 ```
 
 6. Use pipreqs to generate the dependencies
 
-```ruby
+```shell
 pipreqs . --force
 ```
 
 7. Install the required dependencies by running the following command
 
-```ruby
+```shell
 pip install -r requirements.txt
 ```
 
 8. Create a .env file in the root directory and add the following variables
 
-```ruby
+```shell
 OPENAI_API_KEY=your-openai-api-key-here
 ```
 
 9. Launch the app
 
-```ruby
+```shell
 python src/main.py
 ```
 
