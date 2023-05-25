@@ -79,3 +79,81 @@ python src/main.py
 ## Help
 
 Feel free to open an [issue](/issues) if you have any questions or suggestions.
+
+# TEST
+
+```c
+pip install -r requirements.txt
+```
+
+```haskell
+pip install -r requirements.txt
+```
+
+```java
+pip install -r requirements.txt
+```
+
+```javascript
+pip install -r requirements.txt
+```
+
+```python
+pip install -r requirements.txt
+```
+
+```ruby
+pip install -r requirements.txt
+```
+
+```rust
+pip install -r requirements.txt
+```
+
+```typescript
+pip install -r requirements.txt
+```
+
+```xml
+pip install -r requirements.txt
+```
+
+```yaml
+pip install -r requirements.txt
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+```c++
+pip install -r requirements.txt
+```
+
+```css
+pip install -r requirements.txt
+```
+
+```dockerfile
+pip install -r requirements.txt
+```
+
+```go
+pip install -r requirements.txt
+```
+
+```html
+pip install -r requirements.txt
+```
+
+```json
+pip install -r requirements.txt
+```
+
+```kotlin
+pip install -r requirements.txt
+```
+
+```less
+pip install -r requirements.txt
+```
