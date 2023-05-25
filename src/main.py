@@ -28,14 +28,14 @@ def clear_queue(queue):
 
 
 try:
-    print("Starting...")
+    print("Create recordings directory...")
     if not os.path.exists(config.RECORDINGS_PATH):
         os.makedirs(config.RECORDINGS_PATH)
 
+    print("Starting threads...")
     thread_narrate.start()
     thread_interpret.start()
     thread_transcribe.start()
-
     recorder.listen(config.RECORDINGS_PATH, recordings_queue)
 
 except KeyboardInterrupt:
@@ -56,10 +56,10 @@ except KeyboardInterrupt:
     thread_interpret.join()
     thread_narrate.join()
 
-    print("Deleting recordings...")
+    print("Deleting recordings directory...")
     for filename in os.listdir(config.RECORDINGS_PATH):
         os.remove(os.path.join(config.RECORDINGS_PATH, filename))
     os.rmdir(config.RECORDINGS_PATH)
 
-    print("Done")
+    print("Program terminated")
     exit(0)
