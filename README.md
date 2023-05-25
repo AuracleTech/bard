@@ -19,7 +19,6 @@ Bard stands for **B**ackend **A**I **R**esponse **D**ialog. This project uses 4 
 - [git](https://git-scm.com/downloads)
 - [FFmpeg](https://ffmpeg.org/download.html)
 - [Python 3.11](https://www.python.org/downloads/release/python-3113/)
-- [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
 
 2. Clone this repository to your local machine using the following command
 
